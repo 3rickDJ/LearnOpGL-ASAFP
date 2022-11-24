@@ -177,6 +177,24 @@ void specialKeys(int key, int x, int y){
             green = 0.0;
             blue = 1.0;
             break;
+        case GLUT_KEY_LEFT:
+            cam.angle -= 0.01;
+            cam.lx = sin(cam.angle);
+            cam.lz = -cos(angle);
+            break;
+        case GLUT_KEY_RIGHT:
+            cam.angle += 0.01;
+            cam.lx = sin(cam.angle);
+            cam.lz = -cos(cam.angle);
+            break;
+        case GLUT_KEY_UP:
+            cam.x += cam.lx * cam.speedMovement;
+            cam.z += cam.lz * cam.speedMovement;
+            break;
+        case GLUT_KEY_DOWN:
+            cam.x -= cam.lx*cam.speedMovement;
+            cam.z -= cam.lz*cam.speedMovement;
+            break;
     }
 
 };
