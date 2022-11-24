@@ -1,6 +1,8 @@
 #include <GL/glut.h>
 #include <iostream>
-
+#include <valarray>
+#include "Camera.h"
+#include "SnowMan.h"
 
 
 //Variables dimensiones de la pantalla
@@ -113,13 +115,37 @@ static void keys(unsigned char key, int x, int y)
     glutPostRedisplay();
 }
 //--------------------------------------------------------------------------
-
+Camera cam;
+SnowMan snowMan;
 void display()
 {
     glClear(GL_COLOR_BUFFER_BIT);
+    //Reset transformations
+    glLoadIdentity();
+    // Set the camera
+
+    gluLookAt(cam.x, cam.y, cam.z,
+              cam.x + cam.lx, cam.y+ cam.ly, cam.z+cam.lz,
+              cam.upX, cam.upY, cam.upZ);
+
     drawAxis();
-    
-//    glColor3f(1.0f,1.0f,1.0f);
+    //Draw ground
+    glColor3f(0.9, 0.9, 0.9);
+    glBegin(GL_QUADS);
+            glVertex3f(-100,0,-100);
+            glVertex3f(-100,0,100);
+            glVertex3f(100, 0, 100);
+            glVertex3f(100,0,-100);
+    glEnd();
+    // Draw 36 SnowMen
+    for (int i = -3; i < 3; i++) {
+        for (int j = -3; j < 3; ++j) {
+            glPushMatrix();
+            glTranslated(i * 10, 0, j * 10);
+            snowMan.draw();
+            glPopMatrix();
+        }
+    }
     glutSwapBuffers();
 }
 
