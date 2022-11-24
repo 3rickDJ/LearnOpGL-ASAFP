@@ -62,12 +62,24 @@ void drawAxis()
 //funciones de objetos
 /////////////////////////////////////////////////////////////////////////////
 
-
+float angle= 0.0f;
 //funciones callbacks
 void idle(void)
 {
-
-  glutPostRedisplay();
+    glClear(GL_COLOR_BUFFER_BIT);
+    drawAxis();
+    glLoadIdentity();
+    gluLookAt( 0.0f, 0.0f, 10.0f,
+               0.0f, 0.0f,  0.0f,
+               0.0f, 1.0f,  0.0f);
+    glRotated(angle, 0.0f, 1.0f, 0.0);
+    glBegin(GL_TRIANGLES);
+        glVertex3f(-2,-2,0.0);
+        glVertex3f(2,0.0,0.0);
+        glVertex3f(0.0,2,0.0);
+    glEnd();
+    angle += 0.1f;
+    glutSwapBuffers();
  }
 
 void reshape(int width, int height)
@@ -126,7 +138,7 @@ int main(int argc, char **argv)
     glutCreateWindow("Triangulo a color");
     init();
     glutDisplayFunc(display);
-    //glutIdleFunc(idle);
+    glutIdleFunc(idle);
     glutKeyboardFunc(keys);
     glutReshapeFunc(reshape);
     glutMainLoop();
