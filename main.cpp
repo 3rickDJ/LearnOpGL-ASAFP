@@ -64,10 +64,14 @@ void drawAxis()
 
 float angle= 0.0f;
 //funciones callbacks
+
+float red=1, green=1, blue = 1;
 void idle(void)
 {
     glClear(GL_COLOR_BUFFER_BIT);
     drawAxis();
+    glPushMatrix();
+    glColor3f(red,green,blue);
     glLoadIdentity();
     gluLookAt( 0.0f, 0.0f, 10.0f,
                0.0f, 0.0f,  0.0f,
@@ -80,6 +84,7 @@ void idle(void)
     glEnd();
     angle += 0.1f;
     glutSwapBuffers();
+    glPopMatrix();
  }
 
 void reshape(int width, int height)
@@ -90,6 +95,10 @@ void reshape(int width, int height)
 static void keys(unsigned char key, int x, int y)
 {
     switch(key){
+        case 'q':
+        case 'Q':
+
+            break;
                 case 'u':
                      break;
                 case 'U':
@@ -129,6 +138,27 @@ void init()
     glClearColor(0,0,0,0);
 }
 
+void specialKeys(int key, int x, int y){
+    switch (key) {
+        case GLUT_KEY_F1:
+            red = 1.0;
+            green = 0.0;
+            blue = 0.0;
+            break;
+        case GLUT_KEY_F2:
+            red = 0.0;
+            green = 1.0;
+            blue = 0.0;
+            break;
+        case GLUT_KEY_F3:
+            red = 0.0;
+            green = 0.0;
+            blue = 1.0;
+            break;
+    }
+
+};
+
 int main(int argc, char **argv)
 {
     glutInit(&argc, argv);
@@ -140,6 +170,7 @@ int main(int argc, char **argv)
     glutDisplayFunc(display);
     glutIdleFunc(idle);
     glutKeyboardFunc(keys);
+    glutSpecialFunc(specialKeys);
     glutReshapeFunc(reshape);
     glutMainLoop();
     return 0;
