@@ -1,3 +1,4 @@
+#include <valarray>
 #include "Camera.h"
 
 Camera::Camera(){
@@ -13,4 +14,26 @@ Camera::Camera(){
     upX = 0;
     upY = 1;
     upZ = 0;
+}
+
+void Camera::Left() {
+    angle -= speedRotation;
+    lx = sin(angle);
+    lz = -cos(angle);
+}
+
+void Camera::Right() {
+    angle += speedRotation;
+    lx = sin(angle);
+    lz = -cos(angle);
+}
+
+void Camera::Towards() {
+    x += lx*speedMovement;
+    z += lz*speedMovement;
+}
+
+void Camera::Backwards() {
+    x -= lx*speedMovement;
+    z -= lz*speedMovement;
 }

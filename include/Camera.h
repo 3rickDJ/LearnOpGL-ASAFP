@@ -8,4 +8,8 @@ class Camera {
         float upX,upY,upZ;
         float speedMovement;
     Camera();
+    void Left();
+    void Right();
+    void Towards();
+    void Backwards();
 };
