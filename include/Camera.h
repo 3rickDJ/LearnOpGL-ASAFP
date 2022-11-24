@@ -2,7 +2,8 @@
 class Camera {
     public:
         float angle;
-        float x, z;
-        float lx, ly;
+        float x, y, z;
+        float lx, ly, lz;
+        float upX,upY,upZ;
     Camera();
 };
