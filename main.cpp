@@ -119,7 +119,7 @@ Camera cam;
 SnowMan snowMan;
 void display()
 {
-    glClear(GL_COLOR_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     //Reset transformations
     glLoadIdentity();
     // Set the camera
@@ -158,6 +158,7 @@ void init()
     glLoadIdentity();
     gluLookAt(EYE_X,EYE_Y,EYE_Z,CENTER_X,CENTER_Y,CENTER_Z,UP_X,UP_Y,UP_Z);
     glClearColor(0,0,0,0);
+    glEnable(GL_DEPTH_TEST);
 }
 
 void specialKeys(int key, int x, int y){
@@ -202,13 +203,13 @@ void specialKeys(int key, int x, int y){
 int main(int argc, char **argv)
 {
     glutInit(&argc, argv);
-    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
     glutInitWindowPosition(100, 100);
     glutInitWindowSize(WIDTH, HEIGTH);
     glutCreateWindow("Triangulo a color");
     init();
     glutDisplayFunc(display);
-    glutIdleFunc(idle);
+    glutIdleFunc(display);
     glutKeyboardFunc(keys);
     glutSpecialFunc(specialKeys);
     glutReshapeFunc(reshape);
