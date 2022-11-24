@@ -2,6 +2,7 @@
 
 Camera::Camera(){
     angle = 0.0;
+    speedMovement = 0.1;
     x = 0;
     y = 1.0;
     z = 5.0;
