@@ -118,11 +118,7 @@ void display()
 {
     glClear(GL_COLOR_BUFFER_BIT);
     drawAxis();
-    glBegin(GL_TRIANGLES);
-        glVertex3f(-0.5,-0.5,0.0);
-        glVertex3f(0.5,0.0,0.0);
-        glVertex3f(0.0,0.5,0.0);
-    glEnd();
+    
 //    glColor3f(1.0f,1.0f,1.0f);
     glutSwapBuffers();
 }
