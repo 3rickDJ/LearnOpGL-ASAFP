@@ -4,6 +4,8 @@
 #include "Camera.h"
 #include "SnowMan.h"
 
+using namespace std;
+
 
 //Variables dimensiones de la pantalla
 int WIDTH=500;
@@ -179,12 +181,12 @@ void specialKeys(int key, int x, int y){
             blue = 1.0;
             break;
         case GLUT_KEY_LEFT:
-            cam.angle -= 0.01;
+            cam.angle -= cam.speedRotation;
             cam.lx = sin(cam.angle);
-            cam.lz = -cos(angle);
+            cam.lz = -cos(cam.angle);
             break;
         case GLUT_KEY_RIGHT:
-            cam.angle += 0.01;
+            cam.angle += cam.speedRotation;
             cam.lx = sin(cam.angle);
             cam.lz = -cos(cam.angle);
             break;
