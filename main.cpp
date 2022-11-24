@@ -181,22 +181,16 @@ void specialKeys(int key, int x, int y){
             blue = 1.0;
             break;
         case GLUT_KEY_LEFT:
-            cam.angle -= cam.speedRotation;
-            cam.lx = sin(cam.angle);
-            cam.lz = -cos(cam.angle);
+            cam.Left();
             break;
         case GLUT_KEY_RIGHT:
-            cam.angle += cam.speedRotation;
-            cam.lx = sin(cam.angle);
-            cam.lz = -cos(cam.angle);
+            cam.Right();
             break;
         case GLUT_KEY_UP:
-            cam.x += cam.lx * cam.speedMovement;
-            cam.z += cam.lz * cam.speedMovement;
+            cam.Towards();
             break;
         case GLUT_KEY_DOWN:
-            cam.x -= cam.lx*cam.speedMovement;
-            cam.z -= cam.lz*cam.speedMovement;
+            cam.Backwards();
             break;
     }
 
