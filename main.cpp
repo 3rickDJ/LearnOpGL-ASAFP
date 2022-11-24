@@ -1,6 +1,3 @@
-
-#include "3D_bib.h"
-#include "Piramid.h"
 #include <GL/glut.h>
 #include <iostream>
 
@@ -31,17 +28,6 @@ float Y_MIN=-20;
 float Y_MAX=20;
 float Z_MIN=-100;
 float Z_MAX=20;
-
-//Se declara el objeto para utilizar las operaciones 3D
-Operaciones3D op3D;
-Piramid P1 = Piramid(&op3D);
-Piramid P2 = Piramid(&op3D);
-Piramid P3 = Piramid(&op3D);
-
-/* float Theta=0; */
-//Variables para la definicion de objetos
-/* float points[5][3]={{0,0,2},{2,0,2},{2,0,0},{0,0,0},{1,1.5,1}}; */
-
 
 void drawAxis()
 {
@@ -93,20 +79,14 @@ static void keys(unsigned char key, int x, int y)
 {
     switch(key){
                 case 'u':
-                     P1.Deg+=5;
                      break;
                 case 'U':
-                    P1.Deg+=-5;
-                     /* Theta=-6; */
                      break;
                 case 'h':
-                    P2.Deg+=0.1;
                     break;
                 case 'H':
-                    P2.Deg-=0.1;
                     break;
                 default:
-                     /* Theta = 0; */
                      break;
     }
     glutPostRedisplay();
@@ -117,29 +97,12 @@ void display()
 {
     glClear(GL_COLOR_BUFFER_BIT);
     drawAxis();
-    glColor3f(1.0f,1.0f,1.0f);
-    //se rota la piramide Theta grados con respecto al eje de rotacion
-    //a una distancia definida por el usuario
-    //RotacionPiramide('X',Theta,0,0);
-    //RotacionPiramide('Z',Theta,0,0);
-    /* RotacionPiramide(Theta, P1, P2); */
-    /* ImprimePiramide(); */
-    op3D.push();
-    op3D.rotateY(op3D.DegToRad(P1.Deg));
-    P1.ImprimePiramide();
-    op3D.push();
-    op3D.translate(P2.vT);
-    op3D.rotateY(P2.Deg);
-    P2.ImprimePiramide();
-    op3D.push();
-    op3D.translate(P3.vT);
-    P3.ImprimePiramide();
-    op3D.pop();
-    op3D.pop();
-    op3D.pop();
-
-
-
+    glBegin(GL_TRIANGLES);
+        glVertex3f(-0.5,-0.5,0.0);
+        glVertex3f(0.5,0.0,0.0);
+        glVertex3f(0.0,0.5,0.0);
+    glEnd();
+//    glColor3f(1.0f,1.0f,1.0f);
     glutSwapBuffers();
 }
 
@@ -152,24 +115,13 @@ void init()
     glLoadIdentity();
     gluLookAt(EYE_X,EYE_Y,EYE_Z,CENTER_X,CENTER_Y,CENTER_Z,UP_X,UP_Y,UP_Z);
     glClearColor(0,0,0,0);
-    op3D.LoadIdentity(op3D.A);
-    op3D.push();
-    P1.setDeltaDeg(0);
-    P1.setPoints({0,0,2},{2,0,2},{2,0,0},{0,0,0},{1,1.5,1});
-    P2.setVectorTranslation({2,2,0});
-    P2.setDeltaDeg(0);
-    P2.setPoints({0,0,2},{2,0,2},{2,0,0},{0,0,0},{1,1.5,1});
-    P3.setVectorTranslation({5,-5,5});
-    P3.setPoints({0,0,2},{2,0,2},{2,0,0},{0,0,0},{1,1.5,1});
-
-    /* Theta=1; */
 }
 
 int main(int argc, char **argv)
 {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-    glutInitWindowPosition(50, 50);
+    glutInitWindowPosition(100, 100);
     glutInitWindowSize(WIDTH, HEIGTH);
     glutCreateWindow("Triangulo a color");
     init();
