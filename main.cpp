@@ -97,7 +97,7 @@ static void keys(unsigned char key, int x, int y)
     switch(key){
         case 'q':
         case 'Q':
-
+            exit(0);
             break;
                 case 'u':
                      break;
