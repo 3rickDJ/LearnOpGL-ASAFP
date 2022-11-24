@@ -11,7 +11,7 @@ file(GLOB CPP_SOURCE
     )
 
 ################################################
-
+include_directories(${PROJECT_SOURCE_DIR}/include)
 add_executable(carroExe main.cpp ${CPP_SOURCE}) #common to all clion project
 target_link_libraries(carroExe ${OpenGlLinkers}) # linking opengl libraries to the project
 
