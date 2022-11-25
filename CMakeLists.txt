@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10) # common to every CLion project
 project(carro) # project name
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 set(CMAKE_CXX_FLAGS "-Wall")
 set(OpenGlLinkers -lglut -lGLU -lGL) # setting all the Glut libraries as one variable.
