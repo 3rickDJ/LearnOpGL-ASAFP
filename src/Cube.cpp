@@ -1,5 +1,5 @@
 #include "Cube.h"
-
+#include <GL/glut.h>
 Cube::Cube() {
 }
 
@@ -8,6 +8,7 @@ void Cube::addTexture(char *name, int face) {
 }
 
 void Cube::draw() {
+    glClearColor(0.0,0.0,0.0,0.0);
     texture.activate(0);
     drawFace(-1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, -1.0, 1.0, 1.0, 1.0, 1.0);
     texture.activate(1);

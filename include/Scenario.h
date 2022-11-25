@@ -9,6 +9,8 @@ public:
     Camera cam;
     SnowMan snowMan;
     Cube cube;
+    unsigned int texture;
+    int width, height, nrChannels;
     Axis axis;
     Scenario();
     void display();
