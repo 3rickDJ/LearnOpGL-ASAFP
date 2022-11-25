@@ -1,7 +1,7 @@
 #pragma once
-#import "Camera.h"
-#import "Axis.h"
-#import "SnowMan.h"
+#include "Camera.h"
+#include "Axis.h"
+#include "SnowMan.h"
 class Scenario {
 public:
     Camera cam;
