@@ -6,9 +6,7 @@ void Scenario::display() {
     glLoadIdentity();
     // Set the camera
 
-    gluLookAt(cam.x, cam.y, cam.z,
-              cam.x + cam.lx, cam.y + cam.ly, cam.z + cam.lz,
-              cam.upX, cam.upY, cam.upZ);
+    cam.lookAt();
 
     axis.Draw();
     //Draw ground
