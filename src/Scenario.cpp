@@ -1,0 +1,94 @@
+#import "Scenario.h"
+#include <GL/glut.h>
+void Scenario::display() {
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    //Reset transformations
+    glLoadIdentity();
+    // Set the camera
+
+    gluLookAt(cam.x, cam.y, cam.z,
+              cam.x + cam.lx, cam.y + cam.ly, cam.z + cam.lz,
+              cam.upX, cam.upY, cam.upZ);
+
+    axis.Draw();
+    //Draw ground
+    glColor3f(0.9, 0.9, 0.9);
+    glBegin(GL_QUADS);
+    glVertex3f(-100, 0, -100);
+    glVertex3f(-100, 0, 100);
+    glVertex3f(100, 0, 100);
+    glVertex3f(100, 0, -100);
+    glEnd();
+    // Draw 36 SnowMen
+    for (int i = -3; i < 3; i++) {
+        for (int j = -3; j < 3; ++j) {
+            glPushMatrix();
+            glTranslated(i * 10, 0, j * 10);
+            snowMan.draw();
+            glPopMatrix();
+        }
+    }
+    glutSwapBuffers();
+}
+
+Scenario::Scenario() {
+
+}
+
+void Scenario::keys(unsigned char key, int x, int y) {
+    switch (key) {
+        case 'q':
+        case 'Q':
+            exit(0);
+            break;
+        case 'u':
+            break;
+        case 'U':
+            break;
+        case 'h':
+            break;
+        case 'H':
+            break;
+        default:
+            break;
+    }
+    glutPostRedisplay();
+}
+
+void Scenario::specialKeys(int key, int x, int y) {
+
+    switch (key) {
+        case GLUT_KEY_F1:
+            break;
+        case GLUT_KEY_F2:
+            break;
+        case GLUT_KEY_F3:
+            break;
+        case GLUT_KEY_LEFT:
+            cam.Left();
+            break;
+        case GLUT_KEY_RIGHT:
+            cam.Right();
+            break;
+        case GLUT_KEY_UP:
+            cam.Towards();
+            break;
+        case GLUT_KEY_DOWN:
+            cam.Backwards();
+            break;
+    }
+}
+
+void Scenario::reshape(int width, int height) {
+    glViewport(0, 0, width, height);
+}
+
+void Scenario::init() {
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    gluPerspective(60.0, (GLfloat) 1.0, 0.01, 100.0);
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+    glEnable(GL_DEPTH_TEST);
+}
+
