@@ -65,30 +65,7 @@ void drawAxis() {
 //funciones de objetos
 /////////////////////////////////////////////////////////////////////////////
 
-float angle = 0.0f;
 //funciones callbacks
-
-float red = 1, green = 1, blue = 1;
-
-void idle(void) {
-    glClear(GL_COLOR_BUFFER_BIT);
-    drawAxis();
-    glPushMatrix();
-    glColor3f(red, green, blue);
-    glLoadIdentity();
-    gluLookAt(0.0f, 0.0f, 10.0f,
-              0.0f, 0.0f, 0.0f,
-              0.0f, 1.0f, 0.0f);
-    glRotated(angle, 0.0f, 1.0f, 0.0);
-    glBegin(GL_TRIANGLES);
-    glVertex3f(-2, -2, 0.0);
-    glVertex3f(2, 0.0, 0.0);
-    glVertex3f(0.0, 2, 0.0);
-    glEnd();
-    angle += 0.1f;
-    glutSwapBuffers();
-    glPopMatrix();
-}
 
 void reshape(int width, int height) {
     glViewport(0, 0, width, height);
@@ -155,27 +132,16 @@ void init() {
     gluPerspective(FOVY, (GLfloat) WIDTH / HEIGTH, ZNEAR, ZFAR);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
-    gluLookAt(EYE_X, EYE_Y, EYE_Z, CENTER_X, CENTER_Y, CENTER_Z, UP_X, UP_Y, UP_Z);
-    glClearColor(0, 0, 0, 0);
     glEnable(GL_DEPTH_TEST);
 }
 
 void specialKeys(int key, int x, int y) {
     switch (key) {
         case GLUT_KEY_F1:
-            red = 1.0;
-            green = 0.0;
-            blue = 0.0;
             break;
         case GLUT_KEY_F2:
-            red = 0.0;
-            green = 1.0;
-            blue = 0.0;
             break;
         case GLUT_KEY_F3:
-            red = 0.0;
-            green = 0.0;
-            blue = 1.0;
             break;
         case GLUT_KEY_LEFT:
             cam.Left();
