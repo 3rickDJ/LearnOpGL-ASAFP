@@ -1,5 +1,6 @@
 #include <valarray>
 #include "Camera.h"
+#include <GL/glut.h>
 
 Camera::Camera() {
     angle = 0.0;
@@ -36,4 +37,10 @@ void Camera::Towards() {
 void Camera::Backwards() {
     x -= lx * speedMovement;
     z -= lz * speedMovement;
+}
+
+void Camera::lookAt() {
+    gluLookAt(x, y, z,
+              x + lx, y + ly, z + lz,
+              upX, upY, upZ);
 }
