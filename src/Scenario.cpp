@@ -90,6 +90,8 @@ void Scenario::init() {
     gluPerspective(60.0, (GLfloat) 1.0, 0.01, 100.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+    glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
+    glShadeModel(GL_FLAT);
     glEnable(GL_DEPTH_TEST);
 }
 
