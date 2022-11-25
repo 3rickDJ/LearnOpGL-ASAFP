@@ -14,4 +14,5 @@ public:
     Textures texture;
 
     void addTexture(char *name, int face);
+    void loadTexture();
 };
