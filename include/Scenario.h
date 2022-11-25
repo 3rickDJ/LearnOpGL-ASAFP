@@ -18,4 +18,5 @@ public:
     void specialKeys(int key, int x, int y);
     void reshape(int width, int height);
     void init();
+    void loadTextures();
 };

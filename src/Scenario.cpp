@@ -96,19 +96,10 @@ void Scenario::init() {
     glShadeModel(GL_FLAT);
     glEnable(GL_DEPTH_TEST);
     //load textures
-    glClearColor(0.0, 0.0, 0.0, 0.0);
-    char* filename0 = "../container.jpg";
-    cube.texture.loadTextureFromFile(filename0,0);
-    char *filename1 = "../textura1.bmp";
-    char *filename2 = "../textura2.bmp";
-    char *filename3 = "../textura3.bmp";
-    char *filename4 = "../textura4.bmp";
-    char *filename5 = "../textura5.bmp";
+    loadTextures();
+}
 
-    cube.texture.loadTextureFromFile(filename1, 1);
-    cube.texture.loadTextureFromFile(filename2,2);
-    cube.texture.loadTextureFromFile(filename3,3);
-    cube.texture.loadTextureFromFile(filename4,4);
-    cube.texture.loadTextureFromFile(filename5,5);
+void Scenario::loadTextures() {
+    cube.loadTexture();
 }
 
