@@ -133,6 +133,7 @@ void Scenario::init() {
 }
 
 void Scenario::loadTextures() {
-    cube.loadTexture();
+    cube.loadTexture(6, "../container.jpg", "../textura1.bmp", "../textura2.bmp", "../textura3.bmp", "../textura4.bmp",
+                     "../textura5.bmp");
 }
 
