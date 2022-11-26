@@ -117,10 +117,7 @@ void Scenario::init() {
     glEnable(GL_DEPTH_TEST);
     //load textures
     loadTextures();
-    cube.radius = 1;
-    cube.z = 3;
-    cube.y = 1;
-    cube.x = 3;
+    cube.loadVars(3,1,3,1);
 }
 
 void Scenario::loadTextures() {
