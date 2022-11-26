@@ -1,7 +1,7 @@
 #include "Collider.h"
 
 bool Collider::isColliding(Player player, float x, float z, float radius) {
-    if (z == player.cam.z) {
+    if (z + radius+1 < player.cam.z) {
         return false;
     }
     float a = player.cam.x - 1;
