@@ -1,6 +1,7 @@
 #include "Obstacle.h"
 
 Obstacle::Obstacle() {
+    this->leftToRigh = true;
     this->x = 0;
     this->y = 0;
     this->z = 0;
@@ -16,7 +17,7 @@ Obstacle::Obstacle() {
 }
 
 void Obstacle::loadVars(float x, float y, float z, float dx, float dy, float dz, float rotation, float speedRotation,
-                        float radius) {
+                        float radius, bool leftToRight) {
     this->x = x;
     this->y = y;
     this->z = z;

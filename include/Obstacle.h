@@ -9,8 +9,9 @@ public:
     float dx,dy,dz;
     float rotation;
     float speedRotation;
+    bool leftToRigh;
 
     void loadVars(float x, float y, float z, float dx, float dy, float dz, float rotation, float speedRotation,
-                  float radius);
+                  float radius, bool leftToRight);
     void loadVars(float x, float y, float z, float radius);
 };
