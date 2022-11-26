@@ -16,4 +16,10 @@ public:
     void loadVars(float x, float y, float z, float radius);
 
     void reset();
+
+    float getX();
+
+    float getZ();
+
+    float getRadius();
 };

@@ -9,7 +9,7 @@ void Obstacle::loadVars(float x, float y, float z, float dx, float dy, float dz,
     this->x = x;
     this->y = y;
     this->z = z;
-    this->dx = leftToRight ? dx:-dx;
+    this->dx = dx;
     this->dy = dy;
     this->dz = dz;
     this->radius = radius;
@@ -18,6 +18,7 @@ void Obstacle::loadVars(float x, float y, float z, float dx, float dy, float dz,
     this->tz = z;
     this->degree = rotation;
     this->speedRotation = speedRotation;
+    this->leftToRigh = leftToRight;
 }
 
 void Obstacle::loadVars(float x, float y, float z, float radius) {
@@ -28,6 +29,7 @@ void Obstacle::loadVars(float x, float y, float z, float radius) {
     this->tx = x;
     this->ty = y;
     this->tz = z;
+    this->leftToRigh =true;
 }
 
 void Obstacle::reset() {
@@ -44,4 +46,16 @@ void Obstacle::reset() {
     this->tz = 0;
     this->degree = 0;
     this->speedRotation = 0;
+}
+
+float Obstacle::getX() {
+    return tx;
+}
+
+float Obstacle::getZ() {
+    return tz;
+}
+
+float Obstacle::getRadius() {
+    return radius;
 }
