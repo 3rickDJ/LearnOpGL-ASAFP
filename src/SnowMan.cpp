@@ -1,15 +1,17 @@
+#include <valarray>
 #include "SnowMan.h"
 
 void SnowMan::drawBody() {
     glColor3f(1.0, 1.0, 1.0);
     glTranslated(0.0, 0.75, 0.0);
+    glRotated(degree, 0, 1, 0);
     glutSolidSphere(0.75f, 20, 20);
 
 }
 
 void SnowMan::drawHead() {
+    glColor3f(1, 1, 1);
     glTranslated(0.0f, 1.0, 0.0);
-    glRotated(degree,0,1,0);
     glutSolidSphere(0.25, 20, 20);
 }
 
@@ -30,6 +32,7 @@ void SnowMan::drawNose() {
 
 void SnowMan::draw() {
     drawBody();
+    drawButtons();
     drawHead();
     drawEyes();
     drawNose();
@@ -37,10 +40,26 @@ void SnowMan::draw() {
 }
 
 SnowMan::SnowMan() {
-    speedRotation = 0.1;
+    speedRotation = 0.04;
     degree = 0;
 }
 
 void SnowMan::animation() {
     degree += speedRotation;
+}
+
+void SnowMan::drawButtons() {
+    float radius  = 0.75;
+    float y,z;
+    float deg=0.9;
+    for (int i = 0; i < 4; ++i) {
+        glPushMatrix();
+        y = cos(deg)*radius;
+        z = sin(deg)*radius;
+        deg+=0.3;
+        glTranslated(0,y,z);
+        glColor3f(0, 0, 0);
+        glutSolidSphere(0.05,10,10);
+        glPopMatrix();
+    }
 }

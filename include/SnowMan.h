@@ -31,4 +31,6 @@ public:
 
 public:
     void draw();
+
+    void drawButtons();
 };
