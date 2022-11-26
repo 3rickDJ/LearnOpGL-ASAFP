@@ -4,5 +4,5 @@
 class Collider{
 public:
     Collider();
-    bool isColliding(Player player, void * obj);
+    bool isColliding(Player player, float x, float z, float radius);
 };
