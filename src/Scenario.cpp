@@ -12,10 +12,6 @@ void Scenario::display() {
     cube.draw();
     glPopMatrix();
     axis.Draw();
-//    glPushMatrix();
-//        glTranslated(1,1,1);
-//        glutSolidTeapot(1);
-//    glPopMatrix();
     //Draw ground
     glColor3f(0.9, 0.9, 0.9);
     glBegin(GL_QUADS);
