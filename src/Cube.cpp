@@ -72,13 +72,3 @@ float Cube::getZ() {
 float Cube::getRadius() {
     return this->radius;
 }
-
-void Cube::loadVars(float x, float y, float z, float radius) {
-    this->x = x;
-    this->y = y;
-    this->z = z;
-    this->radius = radius;
-    this->tx = x;
-    this->ty = y;
-    this->tz = z;
-}
