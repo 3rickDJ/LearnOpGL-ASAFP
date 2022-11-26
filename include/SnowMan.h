@@ -1,12 +1,11 @@
 #pragma once
 
 #include <GL/glut.h>
+#include "Obstacle.h"
 
-class SnowMan {
+class SnowMan : public Obstacle {
 public:
     SnowMan();
-    float degree;
-    float speedRotation;
     float colorBody[3];
     float posBody[3];
 
