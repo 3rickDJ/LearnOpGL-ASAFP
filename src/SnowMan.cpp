@@ -3,9 +3,9 @@
 
 void SnowMan::drawBody() {
     glColor3f(1.0, 1.0, 1.0);
-    glTranslated(0.0, 0.75, 0.0);
+    glTranslated(0.0, radius, 0.0);
     glRotated(degree, 0, 1, 0);
-    glutSolidSphere(0.75f, 20, 20);
+    glutSolidSphere(radius, 20, 20);
 
 }
 
@@ -31,16 +31,19 @@ void SnowMan::drawNose() {
 }
 
 void SnowMan::draw(bool animateHead, bool animateTrans) {
-    glTranslated(tx, ty, tz);
+    if(animateTrans){
+        glTranslated(tx, ty, tz);
+        animationTrans();
+    }
+    if (animateHead) {
+        animation();
+    }
     drawBody();
     drawButtons();
     drawHead();
     drawEyes();
     drawNose();
-    if (animateHead)
-        animation();
-    if(animateTrans)
-        animationTrans();
+
 }
 
 SnowMan::SnowMan() {
@@ -70,8 +73,8 @@ void SnowMan::drawButtons() {
 
 void SnowMan::animationTrans() {
     if(tx>=0 && tx<=10){
-        tx += dx;
+        tx += leftToRigh ? dx:-dx;
     }else{
-        tx = leftToRigh ? 10: 0;
+        tx = leftToRigh ? 0: 10;
     }
 }
