@@ -23,7 +23,7 @@ void specialKeys(int key, int x, int y) {
 int main(int argc, char **argv) {
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
-    glutInitWindowPosition(100, 100);
+    glutInitWindowPosition(100, 500);
     glutInitWindowSize(500, 500);
     glutCreateWindow("Triangulo a color");
     escenario.init();
