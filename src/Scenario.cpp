@@ -12,15 +12,17 @@ void Scenario::display() {
     glPopMatrix();
     glPushMatrix();
     axis.Draw();
-    glPopMatrix();
     //Draw ground
-    glColor3f(0.9, 0.9, 0.9);
     glBegin(GL_QUADS);
-    glVertex3f(-100, 0, -100);
-    glVertex3f(-100, 0, 100);
-    glVertex3f(100, 0, 100);
-    glVertex3f(100, 0, -100);
-    glEnd();
+    {
+        glPopMatrix();
+        glColor3f(0.9, 0.9, 0.9);
+        glVertex3f(-100, 0, -100);
+        glVertex3f(-100, 0, 100);
+        glVertex3f(100, 0, 100);
+        glVertex3f(100, 0, -100);
+        glEnd();
+    }
     // Draw 36 SnowMen
     for (int i = -3; i < 3; i++) {
         for (int j = -3; j < 3; ++j) {
@@ -31,29 +33,33 @@ void Scenario::display() {
         }
     }
     // draw sphere
+    {
     glEnable(GL_TEXTURE_2D);
     glPushMatrix();
     glTranslated(0, 1, 0);
     glRotatef(90, 1.0f, 0.0f, 0.0f);
     glRotatef(0, 0.0f, 0.0f, 1.0f);
-    glColor3f(1.0,0.0,1.0);
+    glColor3f(1.0, 0.0, 1.0);
     glBindTexture(GL_TEXTURE_2D, cube.texture.texture[0]);
     GLUquadric *qobj = gluNewQuadric();
-    gluQuadricTexture( qobj, GL_TRUE );
-    gluSphere( qobj, 1.0f, 20, 20 );
-    gluDeleteQuadric( qobj );
+    gluQuadricTexture(qobj, GL_TRUE);
+    gluSphere(qobj, 1.0f, 20, 20);
+    gluDeleteQuadric(qobj);
     glPopMatrix();
-    glPopMatrix();
+}
+    // draw teapot
+    {
     glBindTexture(GL_TEXTURE_2D, cube.texture.texture[0]);
-    glTranslatef(0.0,0.0,-10);
+    glTranslatef(0.0, 0.0, -10);
     glutSolidTeapot(1);
     glDisable(GL_TEXTURE_2D);
+    }
+    // watch to collide with cube
     if(collider.isColliding(player, cube.getX(),cube.getZ(), cube.getRadius())){
         player.restart();
     }else{
         player.cam.Towards();
     }
-//    anguloSol = (anguloSol + 0.1 > 360) ? 0.0 : anguloSol + 0.1;
 
     glutSwapBuffers();
 }
