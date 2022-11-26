@@ -30,13 +30,17 @@ void SnowMan::drawNose() {
     glutSolidCone(0.08f, 0.5f, 10, 2);
 }
 
-void SnowMan::draw() {
+void SnowMan::draw(bool animateHead, bool animateTrans) {
+    glTranslated(tx, ty, tz);
     drawBody();
     drawButtons();
     drawHead();
     drawEyes();
     drawNose();
-    animation();
+    if (animateHead)
+        animation();
+    if(animateTrans)
+        animationTrans();
 }
 
 SnowMan::SnowMan() {
@@ -61,5 +65,13 @@ void SnowMan::drawButtons() {
         glColor3f(0, 0, 0);
         glutSolidSphere(0.05,10,10);
         glPopMatrix();
+    }
+}
+
+void SnowMan::animationTrans() {
+    if(tx>=0 && tx<=10){
+        tx += dx;
+    }else{
+        tx = leftToRigh ? 10: 0;
     }
 }

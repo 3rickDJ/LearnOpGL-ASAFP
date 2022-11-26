@@ -29,7 +29,9 @@ public:
     void animation();
 
 public:
-    void draw();
+    void draw(bool animateHead, bool animateTrans);
 
     void drawButtons();
+
+    void animationTrans();
 };
