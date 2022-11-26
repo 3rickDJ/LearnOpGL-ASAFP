@@ -7,7 +7,7 @@ public:
     float tx, ty, tz;
     float radius;
     float dx,dy,dz;
-    float rotation;
+    float degree;
     float speedRotation;
     bool leftToRigh;
 

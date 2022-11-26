@@ -16,7 +16,7 @@ void Obstacle::loadVars(float x, float y, float z, float dx, float dy, float dz,
     this->tx = x;
     this->ty = y;
     this->tz = z;
-    this->rotation = rotation;
+    this->degree = rotation;
     this->speedRotation = speedRotation;
 }
 
@@ -42,6 +42,6 @@ void Obstacle::reset() {
     this->tx = 0;
     this->ty = 0;
     this->tz = 0;
-    this->rotation = 0;
+    this->degree = 0;
     this->speedRotation = 0;
 }
