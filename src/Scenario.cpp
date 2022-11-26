@@ -25,7 +25,7 @@ void Scenario::display() {
         for (int j = -3; j < 3; ++j) {
             glPushMatrix();
             glTranslated(i * 10, 0, j * 10);
-//            snowMan.draw();
+            snowMan.draw();
             glPopMatrix();
         }
     }
@@ -58,9 +58,11 @@ void Scenario::keys(unsigned char key, int x, int y) {
         case 'Q':
             exit(0);
             break;
-        case 'u':
+        case 'a':
+            cam.goLeft();
             break;
-        case 'U':
+        case 'd':
+            cam.goRight();
             break;
         case 'h':
             break;

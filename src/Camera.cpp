@@ -44,3 +44,15 @@ void Camera::lookAt() {
               x + lx, y + ly, z + lz,
               upX, upY, upZ);
 }
+
+void Camera::goLeft() {
+    if (x > 0) {
+        x -= speedMovement;
+    }
+}
+
+void Camera::goRight() {
+    if (x < 10) {
+        x += speedMovement;
+    }
+}

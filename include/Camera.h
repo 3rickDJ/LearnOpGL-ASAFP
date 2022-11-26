@@ -20,4 +20,8 @@ public:
     void Backwards();
 
     void lookAt();
+
+    void goLeft();
+
+    void goRight();
 };
