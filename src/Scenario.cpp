@@ -28,7 +28,7 @@ void Scenario::display() {
         for (int j = -3; j < 3; ++j) {
             glPushMatrix();
             glTranslated(i * 10, 0, j * 10);
-            snowMan.draw();
+            snowMan.draw(false, false);
             glPopMatrix();
         }
     }
@@ -123,7 +123,7 @@ void Scenario::init() {
     glEnable(GL_DEPTH_TEST);
     //load textures
     loadTextures();
-    cube.loadVars(3,1,3,0.01,0,0,0,0.1,1,true);
+    cube.loadVars(3,1,3,0.01,0,0,0,0.1,1,false);
 }
 
 void Scenario::loadTextures() {
