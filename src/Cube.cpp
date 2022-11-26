@@ -8,7 +8,7 @@ void Cube::addTexture(char *name, int face) {
 }
 
 void Cube::draw() {
-    glTranslated(3, 1, 3);
+    glTranslated(x, y, z);
     glColor3f(1.0,1.0,1.0);
     glClearColor(0.0, 0.0, 0.0, 0.0);
     // Texture binding
@@ -21,6 +21,9 @@ void Cube::draw() {
     texture.activate(3);
     drawFace(-1.0, 1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, 1.0, -1.0, 1.0, 1.0);
     texture.deactivate();
+    glColor4f(1,1,1,0.2);
+    glutSolidSphere(radius, 10, 10);
+    glColor3f(1,1,1);
     // restore the matrix
 }
 
