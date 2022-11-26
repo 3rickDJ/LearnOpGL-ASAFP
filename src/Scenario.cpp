@@ -7,13 +7,15 @@ void Scenario::display() {
     glLoadIdentity();
     // Set the camera
     cam.lookAt();
-
-    cube.draw();
-    axis.Draw();
     glPushMatrix();
-        glTranslated(1,1,1);
-        glutSolidTeapot(1);
+    glTranslated(3, 0, 3);
+    cube.draw();
     glPopMatrix();
+    axis.Draw();
+//    glPushMatrix();
+//        glTranslated(1,1,1);
+//        glutSolidTeapot(1);
+//    glPopMatrix();
     //Draw ground
     glColor3f(0.9, 0.9, 0.9);
     glBegin(GL_QUADS);
@@ -27,10 +29,25 @@ void Scenario::display() {
         for (int j = -3; j < 3; ++j) {
             glPushMatrix();
             glTranslated(i * 10, 0, j * 10);
-            snowMan.draw();
+//            snowMan.draw();
             glPopMatrix();
         }
     }
+    glEnable(GL_TEXTURE_2D);
+    glPushMatrix();
+    glTranslated(0, 1, 0);
+    glRotatef(90, 1.0f, 0.0f, 0.0f);
+    glRotatef(0, 0.0f, 0.0f, 1.0f);
+    glColor3f(1.0,1.0,1.0);
+    glBindTexture(GL_TEXTURE_2D, cube.texture.texture[0]);
+    GLUquadric *qobj = gluNewQuadric();
+    gluQuadricTexture( qobj, GL_TRUE );
+    gluSphere( qobj, 1.0f, 20, 20 );
+    gluDeleteQuadric( qobj );
+    glPopMatrix();
+    glDisable(GL_TEXTURE_2D);
+//    anguloSol = (anguloSol + 0.1 > 360) ? 0.0 : anguloSol + 0.1;
+
     glutSwapBuffers();
 }
 
@@ -61,12 +78,6 @@ void Scenario::keys(unsigned char key, int x, int y) {
 void Scenario::specialKeys(int key, int x, int y) {
 
     switch (key) {
-        case GLUT_KEY_F1:
-            break;
-        case GLUT_KEY_F2:
-            break;
-        case GLUT_KEY_F3:
-            break;
         case GLUT_KEY_LEFT:
             cam.Left();
             break;
