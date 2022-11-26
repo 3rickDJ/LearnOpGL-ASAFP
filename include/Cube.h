@@ -8,6 +8,7 @@ class Cube {
 
 public:
     float x,y,z;
+    float tx,ty,tz;
     float radius;
     Cube();
 
@@ -23,4 +24,6 @@ public:
     float getZ();
 
     float getRadius();
+
+    void loadVars(float x, float y, float z, float radius);
 };
