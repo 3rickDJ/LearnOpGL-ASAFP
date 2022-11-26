@@ -6,4 +6,6 @@ class Player {
 public:
     Camera cam;
     Player();
+
+    void restart();
 };
