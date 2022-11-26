@@ -11,10 +11,7 @@ public:
 
     void draw();
 
-    Textures texture;
-
     void addTexture(char *name, int face);
-    void loadTexture();
 
     void animation();
 };
