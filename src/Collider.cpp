@@ -22,3 +22,24 @@ bool Collider::isColliding(Player player, float x, float z, float radius) {
 Collider::Collider() {
 
 }
+
+void Collider::player(Player *pPlayer) {
+    this->pPlayer = pPlayer;
+}
+
+void Collider::attach(Obstacle *pObs) {
+    obstacles.push_back(pObs);
+}
+
+void Collider::watch() {
+    bool colliding = false;
+    for (auto i = 0; i < obstacles.size(); ++i) {
+        colliding = colliding || isColliding(*pPlayer, obstacles[i]->getX(), obstacles[i]->getZ(), obstacles[i]->getRadius());
+    }
+    if(colliding){
+        pPlayer->restart();
+    }else{
+        pPlayer->cam.Towards();
+    }
+
+}
