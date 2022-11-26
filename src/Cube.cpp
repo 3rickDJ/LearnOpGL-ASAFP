@@ -77,8 +77,8 @@ float Cube::getRadius() {
 
 void Cube::animation(){
     if(tx>=0 && tx<=10){
-        tx += leftToRigh ? dx:-dx;
+        tx += dx;
     }else{
-        tx = leftToRigh ? 0: 10-x;
+        tx = leftToRigh ? 10: 0;
     }
 }
