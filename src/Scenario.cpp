@@ -10,7 +10,9 @@ void Scenario::display() {
     glPushMatrix();
     cube.draw();
     glPopMatrix();
+    glPushMatrix();
     axis.Draw();
+    glPopMatrix();
     //Draw ground
     glColor3f(0.9, 0.9, 0.9);
     glBegin(GL_QUADS);
