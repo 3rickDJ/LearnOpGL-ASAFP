@@ -128,7 +128,7 @@ void Scenario::init() {
     glEnable(GL_DEPTH_TEST);
     //load textures
     loadTextures();
-    snowMan.loadVars(8,0.0,-10,0.01,0,0,0,0.1,0.75, true);
+    snowMan.loadVars(8,0.0,-10,0.02,0,0,0,0.1,0.75, true);
     cube.loadVars(8,1,3,0.01,0,0,0,0.1,1, false);
 }
 
