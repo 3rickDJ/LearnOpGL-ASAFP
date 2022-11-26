@@ -45,7 +45,11 @@ void Scenario::display() {
     gluDeleteQuadric( qobj );
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
-    player.cam.Towards();
+    if(collider.isColliding(player, cube.getX(),cube.getZ(), 0)){
+        player.restart();
+    }else{
+        player.cam.Towards();
+    }
 //    anguloSol = (anguloSol + 0.1 > 360) ? 0.0 : anguloSol + 0.1;
 
     glutSwapBuffers();

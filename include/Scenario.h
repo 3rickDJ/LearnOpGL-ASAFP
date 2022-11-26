@@ -4,12 +4,14 @@
 #include "SnowMan.h"
 #include "Cube.h"
 #include "Player.h"
+#include "Collider.h"
 
 class Scenario {
 public:
     Player player;
     SnowMan snowMan;
     Cube cube;
+    Collider collider;
     int width, height, nrChannels;
     Axis axis;
     Scenario();
