@@ -14,4 +14,6 @@ public:
     void loadVars(float x, float y, float z, float dx, float dy, float dz, float rotation, float speedRotation,
                   float radius, bool leftToRight);
     void loadVars(float x, float y, float z, float radius);
+
+    void reset();
 };

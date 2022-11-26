@@ -1,6 +1,7 @@
 #include "Cube.h"
 #include <GL/glut.h>
 Cube::Cube() {
+    reset();
 }
 
 void Cube::addTexture(char *name, int face) {
@@ -8,7 +9,8 @@ void Cube::addTexture(char *name, int face) {
 }
 
 void Cube::draw() {
-    glTranslated(x, y, z);
+    animation();
+    glTranslated(tx, ty, tz);
     glColor3f(1.0,1.0,1.0);
     glClearColor(0.0, 0.0, 0.0, 0.0);
     // Texture binding
@@ -62,13 +64,21 @@ void Cube::loadTexture() {
 }
 
 float Cube::getX() {
-    return this->x;
+    return this->tx;
 }
 
 float Cube::getZ() {
-    return this->z;
+    return this->tz;
 }
 
 float Cube::getRadius() {
     return this->radius;
+}
+
+void Cube::animation(){
+    if(tx>=0 && tx<=10){
+        tx += dx;
+    }else{
+        tx = x;
+    }
 }

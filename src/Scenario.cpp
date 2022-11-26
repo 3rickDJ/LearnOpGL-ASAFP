@@ -117,7 +117,7 @@ void Scenario::init() {
     glEnable(GL_DEPTH_TEST);
     //load textures
     loadTextures();
-    cube.loadVars(3,1,3,1);
+    cube.loadVars(3,1,3,0.01,0,0,0,0.1,1,true);
 }
 
 void Scenario::loadTextures() {

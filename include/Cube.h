@@ -21,4 +21,6 @@ public:
     float getZ();
 
     float getRadius();
+
+    void animation();
 };
