@@ -16,11 +16,5 @@ public:
     void addTexture(char *name, int face);
     void loadTexture();
 
-    float getX();
-
-    float getZ();
-
-    float getRadius();
-
     void animation();
 };

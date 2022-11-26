@@ -63,22 +63,18 @@ void Cube::loadTexture() {
     texture.loadTextureFromFile(filename5,5);
 }
 
-float Cube::getX() {
-    return this->tx;
-}
-
-float Cube::getZ() {
-    return this->tz;
-}
-
-float Cube::getRadius() {
-    return this->radius;
-}
-
 void Cube::animation(){
     if(tx>=0 && tx<=10){
-        tx += dx;
+        if(leftToRigh){
+            tx += dx*10;
+        } else{
+            tx -= dx;
+        }
     }else{
-        tx = leftToRigh ? 10: 0;
+        if(leftToRigh){
+            tx = 0;
+        } else{
+            tx = 10;
+        }
     }
 }
