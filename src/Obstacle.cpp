@@ -1,5 +1,5 @@
 #include "Obstacle.h"
-
+#include <stdarg.h>
 Obstacle::Obstacle() {
     reset();
 }
@@ -58,4 +58,15 @@ float Obstacle::getZ() {
 
 float Obstacle::getRadius() {
     return radius;
+}
+
+void Obstacle::loadTexture(int num_textures, ...) {
+    glClearColor(0.0, 0.0, 0.0, 0.0);
+    va_list args;
+    va_start(args,num_textures);
+
+    for (int i = 0; i < num_textures; ++i) {
+        char * file = va_arg(args,char*);
+        texture.loadTextureFromFile(file,i);
+    }
 }
