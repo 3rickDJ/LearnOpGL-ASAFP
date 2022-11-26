@@ -45,7 +45,7 @@ void Scenario::display() {
     gluDeleteQuadric( qobj );
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
-    if(collider.isColliding(player, cube.getX(),cube.getZ(), 0)){
+    if(collider.isColliding(player, cube.getX(),cube.getZ(), cube.getRadius())){
         player.restart();
     }else{
         player.cam.Towards();
@@ -114,6 +114,9 @@ void Scenario::init() {
     glEnable(GL_DEPTH_TEST);
     //load textures
     loadTextures();
+    cube.radius = 1;
+    cube.z = 3;
+    cube.x = 3;
 }
 
 void Scenario::loadTextures() {

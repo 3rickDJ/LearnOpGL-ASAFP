@@ -7,6 +7,8 @@ class Cube {
                   float y4, float z4);
 
 public:
+    float x,y,z;
+    float radius;
     Cube();
 
     void draw();
@@ -15,4 +17,10 @@ public:
 
     void addTexture(char *name, int face);
     void loadTexture();
+
+    float getX();
+
+    float getZ();
+
+    float getRadius();
 };

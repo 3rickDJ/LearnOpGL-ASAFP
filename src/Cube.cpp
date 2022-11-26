@@ -53,3 +53,15 @@ void Cube::loadTexture() {
     texture.loadTextureFromFile(filename4,4);
     texture.loadTextureFromFile(filename5,5);
 }
+
+float Cube::getX() {
+    return this->x;
+}
+
+float Cube::getZ() {
+    return this->z;
+}
+
+float Cube::getRadius() {
+    return this->radius;
+}
