@@ -9,7 +9,7 @@ void Obstacle::loadVars(float x, float y, float z, float dx, float dy, float dz,
     this->x = x;
     this->y = y;
     this->z = z;
-    this->dx = dx;
+    this->dx = leftToRight ? dx:-dx;
     this->dy = dy;
     this->dz = dz;
     this->radius = radius;
