@@ -1,20 +1,22 @@
 #include "Collider.h"
+#include <iostream>
+using namespace std;
 
 bool Collider::isColliding(Player player, float x, float z, float radius) {
-    if (z + radius+1 < player.cam.z) {
-        return false;
-    }
-    float a = player.cam.x - 1;
-    float b = player.cam.x + 1;
+    float pZ = player.cam.z;
+    float pX = player.cam.x;
+    float a = pX - 1;
+    float b = pX + 1;
     float c = x - radius;
     float d = x + radius;
-    if(b < c){
-        return false;
+    float deepFar = z - radius;
+    float deepNear = z + radius;
+    bool inRange = deepNear >= pZ && pZ >= deepFar;
+    bool colliding = !(b < c || a > d);
+    if(inRange && colliding){
+        return true;
     }
-    if(a>d) {
-        return false;
-    }
-    return true;
+    return false;
 }
 
 Collider::Collider() {
