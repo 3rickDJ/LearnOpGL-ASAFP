@@ -24,4 +24,6 @@ public:
     void goLeft();
 
     void goRight();
+
+    void reset();
 };

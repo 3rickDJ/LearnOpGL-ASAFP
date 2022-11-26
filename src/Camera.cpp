@@ -3,6 +3,10 @@
 #include <GL/glut.h>
 
 Camera::Camera() {
+    reset();
+}
+
+void Camera::reset(){
     angle = 0.0;
     speedMovement = 0.16;
     speedRotation = 0.05;
