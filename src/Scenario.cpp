@@ -28,10 +28,13 @@ void Scenario::display() {
         for (int j = -3; j < 3; ++j) {
             glPushMatrix();
             glTranslated(i * 10, 0, j * 10);
-            snowMan.draw(false, false);
+            snowMan.draw(true, false);
             glPopMatrix();
         }
     }
+    glPushMatrix();
+    snowMan.draw(true,true);
+    glPopMatrix();
     // draw sphere
     {
     glEnable(GL_TEXTURE_2D);
@@ -55,7 +58,9 @@ void Scenario::display() {
     glDisable(GL_TEXTURE_2D);
     }
     // watch to collide with cube
-    if(collider.isColliding(player, cube.getX(),cube.getZ(), cube.getRadius())){
+    bool colliding = collider.isColliding(player, cube.getX(), cube.getZ(), cube.getRadius()) ||
+                     collider.isColliding(player, snowMan.getX(), snowMan.getZ(), snowMan.getRadius());
+    if(colliding){
         player.restart();
     }else{
         player.cam.Towards();
@@ -123,7 +128,8 @@ void Scenario::init() {
     glEnable(GL_DEPTH_TEST);
     //load textures
     loadTextures();
-    cube.loadVars(3,1,3,0.01,0,0,0,0.1,1,false);
+    snowMan.loadVars(8,0.0,-10,0.01,0,0,0,0.1,0.75, true);
+    cube.loadVars(8,1,3,0.01,0,0,0,0.1,1, false);
 }
 
 void Scenario::loadTextures() {
