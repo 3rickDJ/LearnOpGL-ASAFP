@@ -4,11 +4,11 @@
 
 Camera::Camera() {
     angle = 0.0;
-    speedMovement = 0.1;
+    speedMovement = 0.16;
     speedRotation = 0.05;
-    x = 0;
+    x = 5;
     y = 1.0;
-    z = 5.0;
+    z = 50.0;
     lx = 0.0;
     ly = 0.0;
     lz = -1.0;
