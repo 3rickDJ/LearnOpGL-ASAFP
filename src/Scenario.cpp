@@ -119,6 +119,7 @@ void Scenario::init() {
     loadTextures();
     cube.radius = 1;
     cube.z = 3;
+    cube.y = 1;
     cube.x = 3;
 }
 
