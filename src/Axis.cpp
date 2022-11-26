@@ -32,6 +32,14 @@ void Axis::Draw() {
     glVertex3f(0.0, 0.0, Z_MAX);
     glEnd();
     glLineWidth(1.0);
+    //z + 10 axis
+    glBegin(GL_LINES);
+    glColor3f(0.6f, 0.0f, 1.0f);
+    glVertex3f(10.0, 0.0, Z_MIN);
+    glColor3f(0.7f, 0.0f, 0.4f);
+    glVertex3f(10.0, 0.0, Z_MAX);
+    glEnd();
+    glLineWidth(1.0);
 }
 
 Axis::Axis() {
