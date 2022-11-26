@@ -11,9 +11,9 @@ public:
 
     Camera();
 
-    void Left();
+    void TurnLeft();
 
-    void Right();
+    void TurnRight();
 
     void Towards();
 

@@ -42,6 +42,7 @@ void Scenario::display() {
     gluDeleteQuadric( qobj );
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
+    cam.Towards();
 //    anguloSol = (anguloSol + 0.1 > 360) ? 0.0 : anguloSol + 0.1;
 
     glutSwapBuffers();
@@ -75,10 +76,10 @@ void Scenario::specialKeys(int key, int x, int y) {
 
     switch (key) {
         case GLUT_KEY_LEFT:
-            cam.Left();
+            cam.TurnLeft();
             break;
         case GLUT_KEY_RIGHT:
-            cam.Right();
+            cam.TurnRight();
             break;
         case GLUT_KEY_UP:
             cam.Towards();

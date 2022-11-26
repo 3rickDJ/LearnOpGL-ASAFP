@@ -4,8 +4,8 @@
 
 Camera::Camera() {
     angle = 0.0;
-    speedMovement = 0.2;
-    speedRotation = 0.02;
+    speedMovement = 0.1;
+    speedRotation = 0.05;
     x = 0;
     y = 1.0;
     z = 5.0;
@@ -17,13 +17,13 @@ Camera::Camera() {
     upZ = 0;
 }
 
-void Camera::Left() {
+void Camera::TurnLeft() {
     angle -= speedRotation;
     lx = sin(angle);
     lz = -cos(angle);
 }
 
-void Camera::Right() {
+void Camera::TurnRight() {
     angle += speedRotation;
     lx = sin(angle);
     lz = -cos(angle);
