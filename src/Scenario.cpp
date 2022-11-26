@@ -8,7 +8,7 @@ void Scenario::display() {
     // Set the camera
     cam.lookAt();
     glPushMatrix();
-    glTranslated(3, 0, 3);
+    glTranslated(3, 1, 3);
 
     glColor3f(1.0,1.0,1.0);
     cube.draw();
