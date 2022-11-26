@@ -4,6 +4,9 @@
 
 class SnowMan {
 public:
+    SnowMan();
+    float degree;
+    float speedRotation;
     float colorBody[3];
     float posBody[3];
 
@@ -23,6 +26,8 @@ public:
     float colorNose[3];
 
     void drawNose();
+
+    void animation();
 
 public:
     void draw();

@@ -4,10 +4,12 @@ void SnowMan::drawBody() {
     glColor3f(1.0, 1.0, 1.0);
     glTranslated(0.0, 0.75, 0.0);
     glutSolidSphere(0.75f, 20, 20);
+
 }
 
 void SnowMan::drawHead() {
     glTranslated(0.0f, 1.0, 0.0);
+    glRotated(degree,0,1,0);
     glutSolidSphere(0.25, 20, 20);
 }
 
@@ -31,4 +33,14 @@ void SnowMan::draw() {
     drawHead();
     drawEyes();
     drawNose();
+    animation();
+}
+
+SnowMan::SnowMan() {
+    speedRotation = 0.1;
+    degree = 0;
+}
+
+void SnowMan::animation() {
+    degree += speedRotation;
 }
