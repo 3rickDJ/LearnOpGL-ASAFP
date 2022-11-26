@@ -3,10 +3,11 @@
 #include "Axis.h"
 #include "SnowMan.h"
 #include "Cube.h"
+#include "Player.h"
 
 class Scenario {
 public:
-    Camera cam;
+    Player player;
     SnowMan snowMan;
     Cube cube;
     int width, height, nrChannels;

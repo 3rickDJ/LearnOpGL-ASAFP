@@ -6,7 +6,7 @@ void Scenario::display() {
     //Reset transformations
     glLoadIdentity();
     // Set the camera
-    cam.lookAt();
+    player.cam.lookAt();
     glPushMatrix();
     glTranslated(3, 1, 3);
 
@@ -45,7 +45,7 @@ void Scenario::display() {
     gluDeleteQuadric( qobj );
     glPopMatrix();
     glDisable(GL_TEXTURE_2D);
-    cam.Towards();
+    player.cam.Towards();
 //    anguloSol = (anguloSol + 0.1 > 360) ? 0.0 : anguloSol + 0.1;
 
     glutSwapBuffers();
@@ -62,10 +62,10 @@ void Scenario::keys(unsigned char key, int x, int y) {
             exit(0);
             break;
         case 'a':
-            cam.goLeft();
+            player.cam.goLeft();
             break;
         case 'd':
-            cam.goRight();
+            player.cam.goRight();
             break;
         case 'h':
             break;
@@ -81,16 +81,16 @@ void Scenario::specialKeys(int key, int x, int y) {
 
     switch (key) {
         case GLUT_KEY_LEFT:
-            cam.TurnLeft();
+            player.cam.TurnLeft();
             break;
         case GLUT_KEY_RIGHT:
-            cam.TurnRight();
+            player.cam.TurnRight();
             break;
         case GLUT_KEY_UP:
-            cam.Towards();
+            player.cam.Towards();
             break;
         case GLUT_KEY_DOWN:
-            cam.Backwards();
+            player.cam.Backwards();
             break;
     }
 }
