@@ -8,7 +8,10 @@ void Cube::addTexture(char *name, int face) {
 }
 
 void Cube::draw() {
-    glClearColor(0.0,0.0,0.0,0.0);
+    glTranslated(3, 1, 3);
+    glColor3f(1.0,1.0,1.0);
+    glClearColor(0.0, 0.0, 0.0, 0.0);
+    // Texture binding
     texture.activate(0);
     drawFace(-1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, -1.0, 1.0, 1.0, 1.0, 1.0);
     texture.activate(1);
@@ -18,6 +21,7 @@ void Cube::draw() {
     texture.activate(3);
     drawFace(-1.0, 1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, 1.0, -1.0, 1.0, 1.0);
     texture.deactivate();
+    // restore the matrix
 }
 
 void Cube::drawFace(float x1, float y1, float z1, float x2, float y2, float z2, float x3, float y3, float z3, float x4,

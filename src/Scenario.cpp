@@ -8,9 +8,6 @@ void Scenario::display() {
     // Set the camera
     player.cam.lookAt();
     glPushMatrix();
-    glTranslated(3, 1, 3);
-
-    glColor3f(1.0,1.0,1.0);
     cube.draw();
     glPopMatrix();
     axis.Draw();
@@ -44,6 +41,10 @@ void Scenario::display() {
     gluSphere( qobj, 1.0f, 20, 20 );
     gluDeleteQuadric( qobj );
     glPopMatrix();
+    glPopMatrix();
+    glBindTexture(GL_TEXTURE_2D, cube.texture.texture[0]);
+    glTranslatef(0.0,0.0,-10);
+    glutSolidTeapot(1);
     glDisable(GL_TEXTURE_2D);
     if(collider.isColliding(player, cube.getX(),cube.getZ(), cube.getRadius())){
         player.restart();
