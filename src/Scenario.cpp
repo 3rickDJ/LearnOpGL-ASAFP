@@ -57,15 +57,8 @@ void Scenario::display() {
     glutSolidTeapot(1);
     glDisable(GL_TEXTURE_2D);
     }
-    // watch to collide with cube
-    bool colliding = collider.isColliding(player, cube.getX(), cube.getZ(), cube.getRadius()) ||
-                     collider.isColliding(player, snowMan.getX(), snowMan.getZ(), snowMan.getRadius());
-    if(colliding){
-        player.restart();
-    }else{
-        player.cam.Towards();
-    }
-
+    // watch to collide with cube or SnowMan
+    collider.watch();
     glutSwapBuffers();
 }
 
@@ -128,8 +121,15 @@ void Scenario::init() {
     glEnable(GL_DEPTH_TEST);
     //load textures
     loadTextures();
+    // set control variables for objects (obstacles)
     snowMan.loadVars(8,0.0,-10,0.02,0,0,0,0.1,0.75, true);
-    cube.loadVars(8,1,3,0.01,0,0,0,0.1,1, false);
+    cube.loadVars(8, 1, 3, 0.01, 0, 0, 0, 0.1, 1, false);
+    //config collider
+    //who is the principal object
+    collider.player(&player);
+    //attatch objects to collide to
+    collider.attach(&snowMan);
+    collider.attach(&cube);
 }
 
 void Scenario::loadTextures() {
