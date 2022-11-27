@@ -1,12 +1,13 @@
 #include "Scenario.h"
 #include "stb_image.h"
+#include <GL/gl.h>
+#include <cstdio>
 #include <GL/glut.h>
 void Scenario::display() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     //Reset transformations
     glLoadIdentity();
     // Set the camera
-
     player.cam.lookAt();
     glPushMatrix();
     cube.draw();
@@ -14,6 +15,34 @@ void Scenario::display() {
     glPushMatrix();
     axis.Draw();
 
+    //Cartel del fondo
+    {
+        glColor3f(1.0,1.0,1.0);
+        glClearColor(0.0, 0.0, 0.0, 0.0);
+        // Texture binding
+        glPushMatrix();
+        cube.texture.activate(0);
+        cube.drawFace( 0, 10, -100,0.0, 0.0, -100.0,10.0, 0, -100,10, 10, -100);
+        cube.texture.deactivate();
+        glPopMatrix();
+    }
+    //draw cubes
+    for (int i = 0; i < cubes.size(); ++i) {
+        Cube * cubo = cubes[i];
+        glPushMatrix();
+        cubo->draw();
+        glPopMatrix();
+    }
+
+    //draw Animated SnowMans
+    glPushMatrix();
+    for (int i = 0; i < snowMans.size(); ++i) {
+        SnowMan * munecoNieve = snowMans[i];
+        glPushMatrix();
+        munecoNieve->draw(true, true);
+        glPopMatrix();
+    }
+    glPopMatrix();
 
     // Draw 36 SnowMen
     for (int i = -100; i < 100; i+=15) {
@@ -28,18 +57,25 @@ void Scenario::display() {
             glPopMatrix();
     }
     glPushMatrix();
-    snowMan.draw(true,true);
+    snowMan.draw(true,false);
     glPopMatrix();
     environment();
 
 
     // watch to collide with cube or SnowMan
     collider.watch();
+    ReachEnd();
     glutSwapBuffers();
 }
 
 Scenario::Scenario() {
 
+}
+void Scenario::ReachEnd(){
+    if(player.cam.z < -100){
+        printf("FELICIDADES BUAPO, CRUSASTE MAL LA CALLE!!");
+        exit(0);
+    }
 }
 
 void Scenario::keys(unsigned char key, int x, int y) {
@@ -49,15 +85,10 @@ void Scenario::keys(unsigned char key, int x, int y) {
             exit(0);
             break;
         case 'a':
-            //player.cam.goLeft();
+            player.cam.TurnLeft();
             break;
         case 'd':
-            //player.cam.goRight();
-            break;
-        case 'h':
-            break;
-        case 'H':
-            break;
+            player.cam.TurnRight();
         default:
             break;
     }
@@ -89,7 +120,7 @@ void Scenario::reshape(int width, int height) {
 void Scenario::init() {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(60.0, (GLfloat) 1.0, 0.01, 100.0);
+    gluPerspective(80.0, (GLfloat) 1.0, 0.01, 100.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
@@ -572,4 +603,3 @@ for (int i = -100; i < 100; i+=30) {
 
 glDisable(GL_TEXTURE_2D);
 }
-
