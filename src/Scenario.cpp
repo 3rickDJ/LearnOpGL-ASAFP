@@ -11,7 +11,7 @@ void Scenario::display() {
     glPushMatrix();
     cube.draw();
     glPopMatrix();
-    glPushMatrix();
+
     axis.Draw();
     //Draw ground
     glBegin(GL_QUADS);
@@ -36,7 +36,7 @@ void Scenario::display() {
         glPopMatrix();
     }
 
-    //draw cubes
+//    //draw cubes
     for (int i = 0; i < cubes.size(); ++i) {
         Cube * cubo = cubes[i];
         glPushMatrix();
@@ -45,11 +45,10 @@ void Scenario::display() {
     }
     //draw Animated SnowMans
     glPushMatrix();
-    glTranslated(0, -1, 0);
     for (int i = 0; i < snowMans.size(); ++i) {
-        SnowMan * mgneNieve = snowMans[i];
+        SnowMan * munecoNieve = snowMans[i];
         glPushMatrix();
-        mgneNieve->draw(true, true);
+        munecoNieve->draw(true, true);
         glPopMatrix();
     }
     glPopMatrix();
@@ -58,14 +57,14 @@ void Scenario::display() {
     for (int i = -3; i < 3; i++) {
         for (int j = -3; j < 3; ++j) {
             glPushMatrix();
-            glTranslated(i * 10, 0, j * 10);
+            glTranslated(i * 11, 0, j * 10);
             snowMan.draw(true, false);
             glPopMatrix();
         }
     }
-    glPushMatrix();
-    snowMan.draw(true,true);
-    glPopMatrix();
+//    glPushMatrix();
+    snowMan.draw(true,false);
+//    glPopMatrix();
 
     // watch to collide with cube or SnowMan
     collider.watch();
@@ -123,7 +122,7 @@ void Scenario::reshape(int width, int height) {
 void Scenario::init() {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(60.0, (GLfloat) 1.0, 0.01, 100.0);
+    gluPerspective(80.0, (GLfloat) 1.0, 0.01, 100.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
     glPolygonMode(GL_FRONT_AND_BACK,GL_FILL);
@@ -141,19 +140,19 @@ void Scenario::init() {
         addObstacle(newCube);
     }
     //more SnowMans!
-    for (int i = 0; i < 2; ++i) {
+    for (int i = 0; i < 10; ++i) {
         SnowMan * newSnowMan  = new SnowMan();
         float zPos = -rand()%100;
         float xSpeed = ((float) rand() / (float)(RAND_MAX))/10;
         printf("Velocidad %2f",xSpeed);
         bool leftRight = (rand()%2)==(rand()%2);
-        newSnowMan->loadVars(i, 0, zPos, xSpeed, 0, 0, 0.1, 3, 1, leftRight);
+        newSnowMan->loadVars(i, 0, zPos, xSpeed, 0, 0, 0.1, 3, 0.75, leftRight);
         addObstacle(newSnowMan);
     }
 
 
     // set control variables for objects (cubes)
-    snowMan.loadVars(8,0.0,-10      ,0.01,0,0,0,0.01,0.75, true);
+    snowMan.loadVars(0,0.0,0      ,0.01,0,0,0,0.01,0.75, true);
     cube.loadVars   (8, 1, 3        ,0.009,0,0,0,0.1,1   , false);
     //config collider
     //who is the principal object

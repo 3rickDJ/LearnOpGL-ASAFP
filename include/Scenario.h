@@ -1,5 +1,4 @@
 #pragma once
-#include "Camera.h"
 #include "Axis.h"
 #include "SnowMan.h"
 #include "Cube.h"
