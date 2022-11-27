@@ -5,9 +5,11 @@
 #include "Cube.h"
 #include "Player.h"
 #include "Collider.h"
+#include <vector>
 
 class Scenario {
 public:
+    vector<Cube*> obstacles;
     Player player;
     SnowMan snowMan;
     Cube cube;
@@ -22,4 +24,5 @@ public:
     void init();
     void loadTextures();
     void ReachEnd();
+    void addObstacle(Cube * pObs);
 };

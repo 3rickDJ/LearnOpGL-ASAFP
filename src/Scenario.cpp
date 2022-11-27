@@ -23,6 +23,13 @@ void Scenario::display() {
         glVertex3f(100, 0, -100);
         glEnd();
     }
+    //draw obstacles
+    for (int i = 0; i < obstacles.size(); ++i) {
+        Cube * cubo = obstacles[i];
+        glPushMatrix();
+        cubo->draw();
+        glPopMatrix();
+    }
 
     // Draw 36 SnowMen
     for (int i = -3; i < 3; i++) {
@@ -100,7 +107,15 @@ void Scenario::init() {
     glShadeModel(GL_FLAT);
     glEnable(GL_DEPTH_TEST);
     //load textures
-    loadTextures();
+    //more cubes!
+    for (int i = 0; i < 5; ++i) {
+        Cube * newCube  = new Cube();
+        float zPos = rand()%100;
+        float xSpeed = (float) (rand()%1)/(rand()%10);
+        bool leftRight = (rand()%2)==(rand()%2);
+        newCube->loadVars(i,01,zPos, xSpeed,0,0,0.1,1,1,leftRight);
+        addObstacle(newCube);
+    }
     // set control variables for objects (obstacles)
     snowMan.loadVars(8,0.0,-10      ,0.01,0,0,0,0.01,0.75, true);
     cube.loadVars   (8, 1, 3        ,0.009,0,0,0,0.1,1   , false);
@@ -109,6 +124,11 @@ void Scenario::init() {
     collider.player(&player);
     //attatch objects to collide to
 
+    //attach obstacles
+    for (int i = 0; i < obstacles.size(); ++i) {
+        collider.attach(obstacles[i]);
+    }
+
     //mugneco de nieve 1
     collider.attach(&snowMan);
 
@@ -116,10 +136,21 @@ void Scenario::init() {
     //cubo malo
     collider.attach(&cube);
 
+    loadTextures();
+
 }
 
 void Scenario::loadTextures() {
     cube.loadTexture(6, "../cubo_malo.bmp", "../cubo_malo.bmp", "../cubo_malo.bmp", "../cubo_malo.bmp", "../cubo_malo.bmp",
                      "../cubo_malo.bmp");
+    for(int i=0;i!=obstacles.size();i++){
+        Obstacle* cubo = obstacles[i];
+        cubo->loadTexture(6, "../cubo_malo.bmp", "../cubo_malo.bmp", "../cubo_malo.bmp", "../cubo_malo.bmp", "../cubo_malo.bmp",
+                          "../cubo_malo.bmp");
+    }
 
+}
+
+void Scenario::addObstacle(Cube *pCube) {
+    obstacles.push_back(pCube);
 }
