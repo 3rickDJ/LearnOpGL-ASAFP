@@ -13,6 +13,8 @@ void Textures::loadTextureFromFile(char *filename, int index) {
     if(data== nullptr){
         std::cout << stbi_failure_reason();
         std::cout << "No se pudo leer\n";
+    }else{
+        std::cout << "Siiii se pudo leer\n";
     }
 
     //generate an OpenGL texture ID for this texture

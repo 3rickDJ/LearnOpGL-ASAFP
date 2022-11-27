@@ -8,7 +8,7 @@ Camera::Camera() {
 
 void Camera::reset(){
     angle = 0.0;
-    speedMovement = 1;
+    speedMovement = 0.16;
     speedRotation = 0.025;
     x = 5;
     y = 1.0;
@@ -34,22 +34,13 @@ void Camera::TurnRight() {
 }
 
 void Camera::Towards() {
-    float future_posicion = x + lx * speedMovement;
-    bool fueraderango = !(future_posicion>=8.5||future_posicion<=1.5);
-    if(fueraderango){
-        x += lx * speedMovement;
-        z += lz * speedMovement;
-    }
+    x += lx * speedMovement;
+    z += lz * speedMovement;
 }
 
 void Camera::Backwards() {
-
-    float future_posicion = x - lx * speedMovement;
-    bool fueraderango = !(future_posicion>=8.5||future_posicion<=1.5);
-    if(fueraderango){
-        x -= lx * speedMovement;
-        z -= lz * speedMovement;
-    }
+    x -= lx * speedMovement;
+    z -= lz * speedMovement;
 }
 
 void Camera::lookAt() {
@@ -59,17 +50,13 @@ void Camera::lookAt() {
 }
 
 void Camera::goLeft() {
-    float future_posicion = x - speedMovement;
-    bool dentro_de_rango = !(future_posicion>=8.5||future_posicion<=1.5);
-    if (dentro_de_rango) {
+    if (x > 1.5) {
         x -= speedMovement;
     }
-}///0 limite de axi z azul
+}
 
 void Camera::goRight() {
-    float future_posicion = x + speedMovement;
-    bool dentro_de_rango = !(future_posicion>=8.5||future_posicion<=1.5);
-    if (dentro_de_rango) {
+    if (x < 8.5) {
         x += speedMovement;
     }
-}///10 limite de axi z+10 morado
+}

@@ -3,7 +3,7 @@
 
 void SnowMan::drawBody() {
     glColor3f(1.0, 1.0, 1.0);
-    glTranslated(0, radius, 0);
+    glTranslated(0.0, radius, 0.0);
     glRotated(degree, 0, 1, 0);
     glutSolidSphere(radius, 20, 20);
 
@@ -32,12 +32,12 @@ void SnowMan::drawNose() {
 
 void SnowMan::draw(bool animateHead, bool animateTrans) {
     if(animateTrans){
+        glTranslated(tx, ty, tz);
         animationTrans();
     }
     if (animateHead) {
         animation();
     }
-    glTranslated(tx, ty, tz);
     drawBody();
     drawButtons();
     drawHead();
@@ -47,6 +47,8 @@ void SnowMan::draw(bool animateHead, bool animateTrans) {
 }
 
 SnowMan::SnowMan() {
+    speedRotation = 0.04;
+    degree = 0;
 }
 
 void SnowMan::animation() {
