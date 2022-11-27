@@ -16,12 +16,16 @@ void Cube::draw() {
     // Texture binding
     texture.activate(0);
     drawFace(-1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, -1.0, 1.0, 1.0, 1.0, 1.0);
+
     texture.activate(1);
     drawFace(1.0, 1.0, 1.0, 1.0, -1.0, 1.0, 1.0, -1.0, -1.0, 1.0, 1.0, -1.0);
+
     texture.activate(2);
     drawFace(1.0, 1.0, -1.0, -1.0, 1.0, -1.0, -1.0, -1.0, -1.0, 1.0, -1.0, -1.0);
+
     texture.activate(3);
     drawFace(-1.0, 1.0, -1.0, -1.0, -1.0, -1.0, -1.0, -1.0, 1.0, -1.0, 1.0, 1.0);
+
     texture.deactivate();
     glColor4f(1,1,1,0.2);
     glutSolidSphere(radius, 10, 10);
@@ -50,7 +54,7 @@ void Cube::drawFace(float x1, float y1, float z1, float x2, float y2, float z2, 
 void Cube::animation(){
     if(tx>=0 && tx<=10){
         if(leftToRigh){
-            tx += dx*10;
+            tx += dx;
         } else{
             tx -= dx;
         }
