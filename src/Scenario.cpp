@@ -23,6 +23,7 @@ void Scenario::display() {
         glVertex3f(100, 0, -100);
         glEnd();
     }
+
     // Draw 36 SnowMen
     for (int i = -3; i < 3; i++) {
         for (int j = -3; j < 3; ++j) {
@@ -35,37 +36,22 @@ void Scenario::display() {
     glPushMatrix();
     snowMan.draw(true,true);
     glPopMatrix();
-    // draw sphere
-    {
-    glEnable(GL_TEXTURE_2D);
-    glPushMatrix();
-    glTranslated(0, 1, 0);
-    glRotatef(90, 1.0f, 0.0f, 0.0f);
-    glRotatef(0, 0.0f, 0.0f, 1.0f);
-    glColor3f(1.0, 0.0, 1.0);
-    glBindTexture(GL_TEXTURE_2D, cube.texture.texture[0]);
-    GLUquadric *qobj = gluNewQuadric();
-    gluQuadricTexture(qobj, GL_TRUE);
-    gluSphere(qobj, 1.0f, 20, 20);
-    gluDeleteQuadric(qobj);
-    glPopMatrix();
-}
-    // draw teapot
-    {
-    glBindTexture(GL_TEXTURE_2D, cube.texture.texture[0]);
-    glTranslatef(0.0, 0.0, -10);
-    glutSolidTeapot(1);
-    glDisable(GL_TEXTURE_2D);
-    }
+
     // watch to collide with cube or SnowMan
     collider.watch();
+    ReachEnd();
     glutSwapBuffers();
 }
 
 Scenario::Scenario() {
 
 }
-
+void Scenario::ReachEnd(){
+    if(player.cam.z < -50){
+        printf("FELICIDADES BUAPO, CRUSASTE MAL LA CALLE!!");
+        exit(0);
+    }
+}
 void Scenario::keys(unsigned char key, int x, int y) {
     switch (key) {
         case 'q':
@@ -73,16 +59,10 @@ void Scenario::keys(unsigned char key, int x, int y) {
             exit(0);
             break;
         case 'a':
-            player.cam.goLeft();
+            player.cam.TurnLeft();
             break;
         case 'd':
-            player.cam.goRight();
-            break;
-        case 'h':
-            break;
-        case 'H':
-            break;
-        default:
+            player.cam.TurnRight();
             break;
     }
     glutPostRedisplay();
@@ -92,10 +72,10 @@ void Scenario::specialKeys(int key, int x, int y) {
 
     switch (key) {
         case GLUT_KEY_LEFT:
-            player.cam.TurnLeft();
+            player.cam.goLeft();
             break;
         case GLUT_KEY_RIGHT:
-            player.cam.TurnRight();
+            player.cam.goRight();
             break;
         case GLUT_KEY_UP:
             player.cam.Towards();
@@ -122,14 +102,20 @@ void Scenario::init() {
     //load textures
     loadTextures();
     // set control variables for objects (obstacles)
-    snowMan.loadVars(8,0.0,-10,0.02,0,0,0,0.1,0.75, true);
-    cube.loadVars(8, 1, 3, 0.01, 0, 0, 0, 0.1, 1, false);
+    snowMan.loadVars(8,0.0,-10      ,0.01,0,0,0,0.01,0.75, true);
+    cube.loadVars   (8, 1, 3        ,0.009,0,0,0,0.1,1   , false);
     //config collider
     //who is the principal object
     collider.player(&player);
     //attatch objects to collide to
+
+    //muñeco de nieve 1
     collider.attach(&snowMan);
+
+
+    //cubo malo
     collider.attach(&cube);
+
 }
 
 void Scenario::loadTextures() {
@@ -137,3 +123,4 @@ void Scenario::loadTextures() {
                      "../textura5.bmp");
 }
 
+}
