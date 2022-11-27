@@ -127,6 +127,34 @@ void Scenario::init() {
     glShadeModel(GL_FLAT);
     glEnable(GL_DEPTH_TEST);
     //load textures
+    //
+
+    //more cubes!
+    for (int i = 0; i < 5; ++i) {
+        Cube * newCube  = new Cube();
+        float zPos = -rand()%100;
+        float xSpeed = ((float) rand() / (float)(RAND_MAX))/10;
+        printf("Velocidad %2f",xSpeed);
+        bool leftRight = (rand()%2)==(rand()%2);
+        newCube->loadVars(i,01,zPos, xSpeed,0,0,0.1,1,1,leftRight);
+        addObstacle(newCube);
+    }
+    //more SnowMans!
+    for (int i = 0; i < 10; ++i) {
+        SnowMan * newSnowMan  = new SnowMan();
+        float zPos = -rand()%100;
+        float xSpeed = ((float) rand() / (float)(RAND_MAX))/10;
+        printf("Velocidad %2f",xSpeed);
+        bool leftRight = (rand()%2)==(rand()%2);
+        newSnowMan->loadVars(i, 0, zPos, xSpeed, 0, 0, 0.1, 3, 0.75, leftRight);
+        addObstacle(newSnowMan);
+    }
+
+
+    // set control variables for objects (cubes)
+    snowMan.loadVars(0,0.0,0      ,0.01,0,0,0,0.01,0.75, true);
+    cube.loadVars   (8, 1, 3        ,0.009,0,0,0,0.1,1   , false);
+
     loadTextures();
     // set control variables for objects (obstacles)
     snowMan.loadVars(8,0.0,-10,0.02,0,0,0,0.1,0.75, true);
@@ -145,6 +173,11 @@ void Scenario::loadTextures() {
                      "trunk2.jpg", "house1.jpg", "house2.jpg", "buld1.jpg", "buld2.jpg"
                     );
 
+    for(int i=0; i != cubes.size(); i++){
+        Obstacle* cubo = cubes[i];
+        cubo->loadTexture(6, "../cubo_malo.bmp", "../cubo_malo.bmp", "../cubo_malo.bmp", "../cubo_malo.bmp", "../cubo_malo.bmp",
+                          "../cubo_malo.bmp");
+    }
 }
 
 void Scenario::environment(){
@@ -602,4 +635,8 @@ for (int i = -100; i < 100; i+=30) {
 
 
 glDisable(GL_TEXTURE_2D);
+}
+
+void Scenario::addObstacle(Cube *pCube) {
+    cubes.push_back(pCube);
 }
