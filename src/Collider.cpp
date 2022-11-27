@@ -5,8 +5,10 @@ using namespace std;
 bool Collider::isColliding(Player player, float x, float z, float radius) {
     float pZ = player.cam.z;
     float pX = player.cam.x;
-    float a = pX - 1;
-    float b = pX + 1;
+    //ancho del personaje de 2 unidades
+    float a = pX - 0.5;
+    float b = pX + 0.5;
+
     float c = x - radius;
     float d = x + radius;
     float deepFar = z - radius;
@@ -38,8 +40,6 @@ void Collider::watch() {
     }
     if(colliding){
         pPlayer->restart();
-    }else{
-        pPlayer->cam.Towards();
     }
 
 }

@@ -21,4 +21,5 @@ public:
     void reshape(int width, int height);
     void init();
     void loadTextures();
+    void ReachEnd();
 };
