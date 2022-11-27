@@ -119,7 +119,7 @@ void Scenario::init() {
 }
 
 void Scenario::loadTextures() {
-    cube.loadTexture(6, "cubo_malo.bmp", "cubo_malo.bmp", "cubo_malo.bmp", "cubo_malo.bmp", "cubo_malo.bmp",
-                     "cubo_malo.bmp");
+    cube.loadTexture(6, "../cubo_malo.bmp", "../cubo_malo.bmp", "../cubo_malo.bmp", "../cubo_malo.bmp", "../cubo_malo.bmp",
+                     "../cubo_malo.bmp");
 
 }
