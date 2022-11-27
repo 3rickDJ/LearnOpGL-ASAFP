@@ -54,7 +54,7 @@ void Cube::drawFace(float x1, float y1, float z1, float x2, float y2, float z2, 
 void Cube::animation(){
     if(tx>=0 && tx<=10){
         if(leftToRigh){
-            tx += dx*10;
+            tx += dx;
         } else{
             tx -= dx;
         }

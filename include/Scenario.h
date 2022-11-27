@@ -9,7 +9,8 @@
 
 class Scenario {
 public:
-    vector<Cube*> obstacles;
+    vector<Cube*> cubes;
+    vector<SnowMan*> snowMans;
     Player player;
     SnowMan snowMan;
     Cube cube;
@@ -25,4 +26,5 @@ public:
     void loadTextures();
     void ReachEnd();
     void addObstacle(Cube * pObs);
+    void addObstacle(SnowMan * pSnow);
 };

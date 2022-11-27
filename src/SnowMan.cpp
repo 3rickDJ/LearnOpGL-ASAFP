@@ -3,7 +3,7 @@
 
 void SnowMan::drawBody() {
     glColor3f(1.0, 1.0, 1.0);
-    glTranslated(0.0, radius, 0.0);
+    glTranslated(tx, ty+radius, tz);
     glRotated(degree, 0, 1, 0);
     glutSolidSphere(radius, 20, 20);
 
@@ -47,8 +47,6 @@ void SnowMan::draw(bool animateHead, bool animateTrans) {
 }
 
 SnowMan::SnowMan() {
-    speedRotation = 0.04;
-    degree = 0;
 }
 
 void SnowMan::animation() {
