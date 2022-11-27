@@ -109,7 +109,7 @@ void Scenario::init() {
     collider.player(&player);
     //attatch objects to collide to
 
-    //muñeco de nieve 1
+    //mugneco de nieve 1
     collider.attach(&snowMan);
 
 
