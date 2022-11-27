@@ -8,7 +8,7 @@ Camera::Camera() {
 
 void Camera::reset(){
     angle = 0.0;
-    speedMovement = 0.16;
+    speedMovement = 1;
     speedRotation = 0.025;
     x = 5;
     y = 1.0;
@@ -34,13 +34,21 @@ void Camera::TurnRight() {
 }
 
 void Camera::Towards() {
-    x += lx * speedMovement;
-    z += lz * speedMovement;
+    float future_posicion = x + lx * speedMovement;
+    bool fueraderango = !(future_posicion>=8.5||future_posicion<=1.5);
+    if(fueraderango){
+        x += lx * speedMovement;
+        z += lz * speedMovement;
+    }
 }
 
 void Camera::Backwards() {
-    x -= lx * speedMovement;
-    z -= lz * speedMovement;
+    float future_posicion = x - lx * speedMovement;
+    bool fueraderango = !(future_posicion>=8.5||future_posicion<=1.5);
+    if(fueraderango){
+        x -= lx * speedMovement;
+        z -= lz * speedMovement;
+    }
 }
 
 void Camera::lookAt() {
@@ -50,13 +58,17 @@ void Camera::lookAt() {
 }
 
 void Camera::goLeft() {
-    if (x > 1.5) {
+    float future_posicion = x - speedMovement;
+    bool dentro_de_rango = !(future_posicion>=8.5||future_posicion<=1.5);
+    if (dentro_de_rango) {
         x -= speedMovement;
     }
 }
 
 void Camera::goRight() {
-    if (x < 8.5) {
-        x += speedMovement;
-    }
+    float future_posicion = x + speedMovement;
+    bool dentro_de_rango = !(future_posicion>=8.5||future_posicion<=1.5);
+    if (dentro_de_rango) {
+         x += speedMovement;
+     }
 }
