@@ -1,6 +1,5 @@
 #include "Scenario.h"
 #include "stb_image.h"
-#include <GL/gl.h>
 #include <cstdio>
 #include <GL/glut.h>
 void Scenario::display() {
@@ -26,14 +25,14 @@ void Scenario::display() {
         cube.texture.deactivate();
         glPopMatrix();
     }
-    //draw cubes
+
+//    //draw cubes
     for (int i = 0; i < cubes.size(); ++i) {
         Cube * cubo = cubes[i];
         glPushMatrix();
         cubo->draw();
         glPopMatrix();
     }
-
     //draw Animated SnowMans
     glPushMatrix();
     for (int i = 0; i < snowMans.size(); ++i) {
@@ -45,20 +44,20 @@ void Scenario::display() {
     glPopMatrix();
 
     // Draw 36 SnowMen
-    for (int i = -100; i < 100; i+=15) {
-        glPushMatrix();
-            glTranslated(0, 0, i);
-            snowMan.draw(true,false);
-            glPopMatrix();
-
-            glPushMatrix();
-            glTranslated(10, 0, i);
-            snowMan.draw(true, false);
-            glPopMatrix();
-    }
-    glPushMatrix();
-    snowMan.draw(true,false);
-    glPopMatrix();
+//    for (int i = -100; i < 100; i+=15) {
+//        glPushMatrix();
+//            glTranslated(0, 0, i);
+//            snowMan.draw(true,false);
+//            glPopMatrix();
+//
+//            glPushMatrix();
+//            glTranslated(10, 0, i);
+//            snowMan.draw(true, false);
+//            glPopMatrix();
+//    }
+//    glPushMatrix();
+//    snowMan.draw(true,false);
+//    glPopMatrix();
     environment();
 
 
@@ -140,7 +139,7 @@ void Scenario::init() {
         addObstacle(newCube);
     }
     //more SnowMans!
-    for (int i = 0; i < 10; ++i) {
+    for (int i = 0; i < 1; ++i) {
         SnowMan * newSnowMan  = new SnowMan();
         float zPos = -rand()%100;
         float xSpeed = ((float) rand() / (float)(RAND_MAX))/10;
@@ -163,8 +162,24 @@ void Scenario::init() {
     //who is the principal object
     collider.player(&player);
     //attatch objects to collide to
+
+    //attach cubes
+    for (int i = 0; i < cubes.size(); ++i) {
+        collider.attach(cubes[i]);
+    }
+    //attach SnowMans
+    for (int i = 0; i < snowMans.size(); ++i) {
+        collider.attach(snowMans[i]);
+    }
+    //mugneco de nieve 1
     collider.attach(&snowMan);
+
+
+    //cubo malo
     collider.attach(&cube);
+
+    loadTextures();
+
 }
 
 void Scenario::loadTextures() {
@@ -639,4 +654,8 @@ glDisable(GL_TEXTURE_2D);
 
 void Scenario::addObstacle(Cube *pCube) {
     cubes.push_back(pCube);
+}
+
+void Scenario::addObstacle(SnowMan *pSnow) {
+    snowMans.push_back(pSnow);
 }

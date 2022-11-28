@@ -1,13 +1,15 @@
 #pragma once
-#include "Camera.h"
 #include "Axis.h"
 #include "SnowMan.h"
 #include "Cube.h"
 #include "Player.h"
 #include "Collider.h"
+#include <vector>
 
 class Scenario {
 public:
+    vector<Cube*> cubes;
+    vector<SnowMan*> snowMans;
     Player player;
     SnowMan snowMan;
     Cube cube;
@@ -21,5 +23,9 @@ public:
     void reshape(int width, int height);
     void init();
     void loadTextures();
+    void ReachEnd();
+    void addObstacle(Cube * pObs);
+    void addObstacle(SnowMan * pSnow);
+
     void environment();
 };

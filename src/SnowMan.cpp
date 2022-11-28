@@ -38,12 +38,29 @@ void SnowMan::draw(bool animateHead, bool animateTrans) {
         animation();
     }
     glTranslated(tx, ty, tz);
-    drawBody();
-    drawButtons();
-    drawHead();
-    drawEyes();
-    drawNose();
+    glRotated(degree, 0, 1, 0);
+    glColor3f(1.0, 1.0, 1.0);
+    glTranslated(0, radius, 0);
+    glutSolidSphere(radius, 20, 20);
 
+//    glPushMatrix();
+//    drawButtons();
+//    glPopMatrix();
+    glColor3f(1, 1, 1);
+    glTranslated(0.0f, 1.0, 0.0);
+    glPushMatrix();
+    glutSolidSphere(0.25, 20, 20);
+
+
+    glColor3f(0.0f, 0.0f, 0.0f);
+    glTranslatef(0.05f, 0.10f, 0.18f);
+    glutSolidSphere(0.05f, 10, 10);
+    glTranslatef(-0.1f, 0.0f, 0.0f);
+    glutSolidSphere(0.05f, 10, 10);
+
+    glPopMatrix();
+    glColor3f(1.0f, 0.5f, 0.5f);
+    glutSolidCone(0.08f, 0.5f, 10, 2);
 }
 
 SnowMan::SnowMan() {
@@ -55,14 +72,14 @@ void SnowMan::animation() {
 
 void SnowMan::drawButtons() {
     float radius  = 0.75;
-    float y,z;
+    float yy,zz;
     float deg=0.9;
     for (int i = 0; i < 4; ++i) {
         glPushMatrix();
-        y = cos(deg)*radius;
-        z = sin(deg)*radius;
+        yy = cos(deg)*radius;
+        zz = sin(deg)*radius;
         deg+=0.3;
-        glTranslated(0,y,z);
+        glTranslated(0,yy,zz);
         glColor3f(0, 0, 0);
         glutSolidSphere(0.05,10,10);
         glPopMatrix();
